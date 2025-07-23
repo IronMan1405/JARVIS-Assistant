@@ -1,13 +1,13 @@
 from datetime import datetime
 
 def greet():
-    return "Hello! I am JARVIS. How may I assist you?"
+    return "Hello! How may I assist you?"
 
 def get_time():
-    return f"The Time is {datetime.now().strftime("%I:%M %p")}"
+    return f"The Time is {datetime.now().strftime('%I:%M %p')}"
 
 def get_date():
-    return f"Today's date is {datetime.now().strftime("%d %B, %Y")}"
+    return f"Today's date is {datetime.now().strftime('%d %B, %Y')}"
 
 def exit_jarvis():
     return "Goodbye!"
