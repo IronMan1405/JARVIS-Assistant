@@ -18,7 +18,7 @@ def get_voice_command():
 
         if recogniser.AcceptWaveForm(data):
             result = json.loads(recogniser.Result())
-            cmd = result.get()
+            cmd = result.get("text", "").strip()
 
             if cmd:
                 stream.stop_stream()
