@@ -1,3 +1,4 @@
+import os, random, webbrowser
 from datetime import datetime
 
 def greet():
@@ -12,6 +13,18 @@ def get_date():
 def exit_jarvis():
     return "Goodbye!"
 
+def open_youtube():
+    webbrowser.open("https://www.youtube.com")
+    return "Opening Youtube"
+
+def open_google():
+    webbrowser.open("https://www.google.com")
+    return "Opening Google"
+
+def open_code():
+    os.system("open -a 'Visual Studio Code'")
+    return "Opening VS Code"
+
 def unknown():
     return "Sorry! I didn't catch that."
 
@@ -21,7 +34,10 @@ commands = {
     "time" : get_time,
     "date" : get_date,
     "exit" : exit_jarvis,
-    "quit" : exit_jarvis
+    "quit" : exit_jarvis, 
+    "youtube": open_youtube,
+    "google": open_google,
+    "code": open_code,
 }
 
 def handleCommand(cmd: str) -> str:
