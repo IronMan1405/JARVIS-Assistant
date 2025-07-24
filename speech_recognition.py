@@ -1,3 +1,6 @@
+import os, sys
+sys.stderr = open(os.devnull, "w")
+
 from vosk import Model, KaldiRecognizer
 import pyaudio
 import json
