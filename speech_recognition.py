@@ -1,5 +1,14 @@
-import os, sys
-sys.stderr = open(os.devnull, "w")
+import os, sys, ctypes
+# sys.stderr = open(os.devnull, "w")
+
+def suppress_stderr():
+    sys.stderr.flush()
+    devnull = os.open(os.devnull, os.O_WRONLY)
+    libc = ctypes.CDLL(None)
+    stderr_fileno = sys.__stderr__.fileno()
+    libc.dup2(devnull, stderr_fileno)
+
+suppress_stderr()
 
 from vosk import Model, KaldiRecognizer
 import pyaudio
