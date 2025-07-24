@@ -28,6 +28,13 @@ def open_code():
 def unknown():
     return "Sorry! I didn't catch that."
 
+def open_app(appname: str):
+    try:
+        os.system(f"open -a '{appname}'")
+        return f"Opening {appname}"
+    except Exception:
+        return f"Could not open {appname}"
+
 commands = {
     "hello" : greet,
     "hi" : greet, 
@@ -40,11 +47,32 @@ commands = {
     "code": open_code,
 }
 
+app_aliases = {
+    "chrome" : "Google Chrome",
+    "safari": "Safari",
+    "code": "Visual Studio Code",
+    "spotify": "Spotify",
+    "notes": "Notes",
+    "calendar": "Calendar",
+    "terminal": "Terminal",
+    "photos": "Photos",
+    "messages": "Messages",
+}
+
 def handleCommand(cmd: str) -> str:
     cmd = cmd.lower()
 
     for keyword, action in commands.items():
         if keyword in cmd:
             return action()
+
+    if cmd.startswith("open "):
+        app_key = cmd.replace("open ", "").strip()
+        app_name = app_aliases.get(app_key)
+
+        if app_name:
+            return open_app(app_name)
+        else:
+            return f"I don't recognize the app {app_key}"
         
     return unknown()
