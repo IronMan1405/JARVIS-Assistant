@@ -1,4 +1,4 @@
-vosk
+SpeechRecognition
 pyaudio
 pyttsx3
 pyobjc>=9.0.1   # For pyttsx3 on macOS
