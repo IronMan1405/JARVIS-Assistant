@@ -1,6 +1,7 @@
 from speech_recognition import get_voice_command as gvc
 from tts import speak
 from command_parser import handleCommand as hc
+from tasks import execute_command as ec
 import time
 
 if __name__ == "__main__":
@@ -12,7 +13,14 @@ if __name__ == "__main__":
 
         print(f"User said: {command}")
 
+        if not command:
+            continue
+
         response = hc(command)
+
+        if response.lower() in ["", "i didn't understand that command", "sorry! i didn't catch that"] or "i don't recognize the app" in response.lower():
+            response = ec(command)
+        
         print(f"JARVIS: {response}")
         speak(response)
 
